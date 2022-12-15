@@ -1,0 +1,50 @@
+@keyframes spin {
+  0% {
+    background-position: 0, 0 0;
+    -webkit-transform: rotateX(0deg);
+  }
+  100% {
+    background-position: 0, 0 -640px;
+    -webkit-transform: rotateX(360deg);
+  }
+}
+@keyframes test {
+  to {
+    transform: translateY(100px);
+  }
+}
+
+@keyframes x-spin {
+  0% {
+    -webkit-transform: rotateX(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(360deg);
+  }
+}
+@keyframes y-spin {
+  0% {
+    -webkit-transform: rotateY(0deg);
+  } 
+  100% {
+    -webkit-transform: rotateY(360deg);
+  }
+}
+
+.kitty {
+  width: 150px;
+  height: 150px;
+  padding: 8px;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.75rem;
+  }
+}
+
+.kitty_spin {
+  animation: x-spin 0.5s infinite linear;
+}
+.kitty_spin_img {
+  animation: y-spin 0.5s infinite linear;
+}

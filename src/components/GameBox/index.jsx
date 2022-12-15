@@ -1,13 +1,16 @@
-import Slot from 'components/slot';
-import React from 'react';
-import './GameBox.scss';
+import Slot from "components/Slot";
+import SlotPanel from "components/SlotPanel";
+import { useState } from "react";
+import "./GameBox.scss";
 
 const GameBox = () => {
-	return (
-		<div className='game-box'>
-			<Slot />
-		</div>
-	);
+  const [spin, setSpin] = useState(false);
+  return (
+    <div className="slot-machine">
+      <SlotPanel setSpin={setSpin} />
+      <Slot spin={spin} setSpin={setSpin} />
+    </div>
+  );
 };
 
 export default GameBox;
