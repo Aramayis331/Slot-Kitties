@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
-import { array, checkCombination, distribution, initialSpinValue, randomItems } from "../../helpers/checkCombination";
+import {
+  array,
+  checkCombination,
+  distribution,
+  initialSpinValue,
+  randomItems,
+} from "../../helpers/checkCombination";
 import { winCombination } from "../../helpers/winCombinationTable";
+import Kitty from "./components/Kitty";
 import "./Slot.scss";
 
 let spinTimeoutId;
-const Slot = () => {
+const Slot = ({ spin, setSpin }) => {
   const [kittys, setKittys] = useState(initialSpinValue);
-  const [spin, setSpin] = useState(false);
   const [win, steWin] = useState([]);
   const [bet, setBet] = useState(100);
   const [winningPrice, setWinningPrice] = useState(0);
@@ -14,23 +20,24 @@ const Slot = () => {
 
   useEffect(() => {
     if (spin) {
-        steWin([]);
-        spinCount > 0 && (spinTimeoutId = setTimeout(() => {
-            playSlot();
-            setSpinCount(prev => prev - 1)
+      steWin([]);
+      spinCount > 0 &&
+        (spinTimeoutId = setTimeout(() => {
+          playSlot();
+          setSpinCount((prev) => prev - 1);
         }, 200));
     }
 
     if (!spinCount) {
-        setSpin(false);
-        setSpinCount(5);
-        clearInterval(spinTimeoutId);
-        steWin(kittys[1]);
-    } 
+      setSpin(false);
+      setSpinCount(5);
+      clearInterval(spinTimeoutId);
+      steWin(kittys[1]);
+    }
 
     return () => {
-        clearTimeout(spinTimeoutId);
-    }
+      clearTimeout(spinTimeoutId);
+    };
   }, [spinCount, spin]);
 
   useEffect(() => {
@@ -38,11 +45,7 @@ const Slot = () => {
   }, [win]);
 
   const playSlot = () => {
-    setKittys(prev => prev.map((item) => randomItems(array, distribution)));
-  };
-
-  const handleSpin = () => {
-    setSpin((prev) => !prev);
+    setKittys((prev) => prev.map((item) => randomItems(array, distribution)));
   };
 
   return (
@@ -50,15 +53,10 @@ const Slot = () => {
       {kittys.map((item, i) => (
         <div key={i} className="slot__items__container">
           {item.map((item, i) => (
-            <div key={i} className="slot__item">
-              <img src={`https://www.solkitties.net/assets/slots/kitties/${item}.png`} />
-            </div>
+            <Kitty key={i} item={item} spin={spin} />
           ))}
         </div>
       ))}
-      <div className="spin__button" onClick={handleSpin}>
-        <button>SPIN</button>
-      </div>
     </div>
   );
 };

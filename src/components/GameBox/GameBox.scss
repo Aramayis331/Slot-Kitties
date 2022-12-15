@@ -1,5 +1,22 @@
-.game-box {
-  width: 750px;
-  height: 450px;
-  border: 1px solid red;
+.slot-machine {
+  width: fit-content;
+  overflow: hidden;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: var(--primary);
+  border-left: solid var(--background);
+  border-width: 3px;
+  border-bottom: 8px solid var(--background);
+  border-radius: 32px;
+  border-right: 4px solid var(--background);
+  border-top: 5px solid var(--background);
+  outline: 1px solid #6d54c8;
+
+  .game-box {
+    width: 750px;
+    height: 450px;
+    border: 1px solid red;
+  }
 }

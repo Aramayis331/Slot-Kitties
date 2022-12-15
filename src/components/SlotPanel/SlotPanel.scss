@@ -1,0 +1,22 @@
+.slotPanel {
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 200px;
+  min-height: 100%;
+  padding: 40px 12px 12px;
+  &__button {
+    background-color: var(--secondary);
+    border: none;
+    box-shadow: 0 7px #5f2dca;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    height: 44px;
+    line-height: 1.5;
+    margin-top: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+}
